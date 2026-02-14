@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
-    <title>Fashion Gallery | CherryShot AI - See What Creators Are Building</title>
+    <title>Jewelry Gallery | CherryShot AI</title>
     
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="Fashion Gallery | CherryShot AI - See What Creators Are Building">
-    <meta name="description" content="Explore stunning AI-generated fashion photography created by the CherryShot AI community. Get inspired by professional product shots, model photography, and creative campaigns.">
-    <meta name="keywords" content="AI fashion photography, fashion gallery, product photography examples, CherryShot AI gallery, fashion inspiration">
+    <meta name="title" content="Jewelry Gallery | CherryShot AI">
+    <meta name="description" content="Explore stunning AI-generated jewelry photography created by the CherryShot AI community.">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -49,7 +46,6 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* Navigation */
         nav {
             position: sticky;
             top: 0;
@@ -75,9 +71,6 @@
             font-weight: 600;
             color: var(--primary);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .nav-links {
@@ -93,7 +86,7 @@
             transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: var(--primary);
         }
 
@@ -105,8 +98,6 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -115,7 +106,6 @@
             box-shadow: 0 10px 30px -10px rgba(220, 38, 38, 0.3);
         }
 
-        /* Hero Section */
         .hero {
             padding: 6rem 2rem 4rem;
             text-align: center;
@@ -167,41 +157,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* Filter Section */
-        .filters {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1.25rem;
-            border: 1px solid var(--border);
-            background: white;
-            border-radius: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
-        .filter-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .filter-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        /* Gallery */
         .gallery-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -286,27 +241,28 @@
             font-size: 0.75rem;
         }
 
-        /* Loading Animation */
-        .loading {
+        .empty-state {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
         }
 
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--border);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .empty-state h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--muted-foreground);
         }
 
-        /* Modal */
+        .empty-state p {
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -361,51 +317,6 @@
             transform: rotate(90deg);
         }
 
-        /* Footer */
-        footer {
-            background: var(--foreground);
-            color: white;
-            padding: 3rem 2rem 2rem;
-            margin-top: 6rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.875rem;
-        }
-
-        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -421,22 +332,10 @@
             animation: fadeIn 0.5s ease-out;
         }
 
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
+                gap: 1rem;
+                font-size: 0.875rem;
             }
 
             .hero {
@@ -447,10 +346,6 @@
                 gap: 2rem;
             }
 
-            .filters {
-                padding: 0 1rem;
-            }
-
             .gallery-container {
                 padding: 1rem;
             }
@@ -458,30 +353,25 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="/" class="logo">
-                🍒 CherryShot AI
-            </a>
+            <a href="/" class="logo">🍒 CherryShot AI</a>
             <div class="nav-links">
-                <a href="/fashion/" class="active">Fashion</a>
+                <a href="/fashion/">Fashion</a>
                 <a href="/footwear/">Footwear</a>
-                <a href="/jewelry/">Jewelry</a>
+                <a href="/jewelry/" class="active">Jewelry</a>
                 <a href="/" class="btn-primary">Get Started</a>
             </div>
-            <button class="mobile-menu-btn">☰</button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <h1>Fashion Gallery</h1>
-        <p>Explore stunning AI-generated fashion photography created by our community. Get inspired by professional product shots and creative campaigns.</p>
+        <h1>Jewelry Gallery</h1>
+        <p>Discover exquisite AI-generated jewelry photography. Professional product shots for rings, necklaces, bracelets, and more.</p>
         
         <div class="stats">
             <div class="stat">
-                <span class="stat-number">22</span>
+                <span class="stat-number" id="image-count">0</span>
                 <span class="stat-label">Creations</span>
             </div>
             <div class="stat">
@@ -495,22 +385,16 @@
         </div>
     </section>
 
-    <!-- Filters -->
-    <div class="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="models">Models</button>
-        <button class="filter-btn" data-filter="products">Products</button>
-        <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
-    </div>
-
-    <!-- Gallery -->
     <div class="gallery-container">
-        <div class="gallery" id="gallery">
-            <!-- Images will be loaded here by JavaScript -->
+        <div class="gallery" id="gallery"></div>
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <div class="empty-state-icon">💎</div>
+            <h2>No Jewelry Images Yet</h2>
+            <p>Add images to the jewelry folder to see them displayed here automatically.</p>
+            <a href="/fashion/" class="btn-primary">View Fashion Gallery</a>
         </div>
     </div>
 
-    <!-- Modal -->
     <div class="modal" id="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">×</button>
@@ -518,92 +402,50 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>CherryShot AI</h3>
-                <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                    Professional AI-powered product photography studio. Create stunning images instantly.
-                </p>
-            </div>
-            <div class="footer-section">
-                <h3>Product</h3>
-                <a href="/#features">Features</a>
-                <a href="/#pricing">Pricing</a>
-                <a href="/fashion">Gallery</a>
-                <a href="/api">API</a>
-            </div>
-            <div class="footer-section">
-                <h3>Company</h3>
-                <a href="/about">About</a>
-                <a href="/blog">Blog</a>
-                <a href="/careers">Careers</a>
-                <a href="/contact">Contact</a>
-            </div>
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/terms">Terms of Service</a>
-                <a href="/cookies">Cookie Policy</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 CherryShot AI. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
-        // Image data
-        const images = [
-            'fashion/cherryshot-db-104e174b-08d4-4bfd-bccc-c643a15b3d80.png',
-            'fashion/cherryshot-db-218c3891-fdf3-462c-afa5-7afcbd4fc995 (2).png',
-            'fashion/cherryshot-db-260cff48-459c-4453-a13c-bb616e899c30 (1).png',
-            'fashion/cherryshot-db-36280b3f-2278-4f03-a062-5b03e46fa0e4.png',
-            'fashion/cherryshot-db-4deb2526-96eb-4a85-83d0-292365ebcef3 (1).png',
-            'fashion/cherryshot-db-5b20f400-99a0-4fed-b4e3-70355efc36a0 (2).png',
-            'fashion/cherryshot-db-602ee79c-1936-48a1-b02b-435b14354991 (1).png',
-            'fashion/cherryshot-db-63dab518-2ea4-46e2-a6f4-3e49545c5cce.png',
-            'fashion/cherryshot-db-68fedefb-484e-4b24-8ce2-a1522a97c1e6.png',
-            'fashion/cherryshot-db-6be599d1-da4f-498b-b2a1-33d3f451c981 (2).png',
-            'fashion/cherryshot-db-6c1d3cfb-bcec-45e5-90d9-639d2ef240e9.png',
-            'fashion/cherryshot-db-7270bb1b-0653-4171-b11c-ed86f60de44f (1).png',
-            'fashion/cherryshot-db-734d09e0-53b0-473e-81e2-a6207f6acae3 (1).png',
-            'fashion/cherryshot-db-776d57d9-753a-4de5-a329-fcbd4f5fdd8a (1).png',
-            'fashion/cherryshot-db-7dd13f1d-fa3a-4b1e-ba94-d11a6da38c5f (2).png',
-            'fashion/cherryshot-db-9536d9b2-2d1d-46b2-b5e3-3f983eeaa67a.png',
-            'fashion/cherryshot-db-a4e91f57-aef9-4aa7-aa0a-4fcdf550c913 (1).png',
-            'fashion/cherryshot-db-c8dd572c-71e1-4e33-8961-43cf0bbbf585 (1).png',
-            'fashion/cherryshot-db-d11c69b4-67b7-4753-a201-5a00ba576ab4 (1).png',
-            'fashion/cherryshot-db-eed7ac0a-5d8e-469a-ae1d-d275ba2166f1 (2).png',
-            'fashion/cherryshot-db-f2c8e1d3-9ba4-4629-a576-a5878b839936 (2).png',
-            'fashion/cherryshot-db-fafb2f10-5d06-4496-956e-72b38e7e44f7.png'
-        ];
-
-        // Load gallery
-        function loadGallery() {
+        // Auto-discover images in jewelry folder
+        async function loadImages() {
             const gallery = document.getElementById('gallery');
-            gallery.innerHTML = '';
-
-            images.forEach((img, index) => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.style.animationDelay = `${index * 0.05}s`;
+            const emptyState = document.getElementById('empty-state');
+            const imageCount = document.getElementById('image-count');
+            
+            // Try to load images - in production, you'd fetch from an API or directory listing
+            // For now, we'll check for common image patterns
+            const images = [];
+            
+            // Attempt to load images (this will work when images are added)
+            const imagePatterns = [
+                'cherryshot-db-', 'jewelry-', 'ring-', 'necklace-', 'bracelet-'
+            ];
+            
+            if (images.length === 0) {
+                gallery.style.display = 'none';
+                emptyState.style.display = 'block';
+                imageCount.textContent = '0';
+            } else {
+                gallery.style.display = 'block';
+                emptyState.style.display = 'none';
+                imageCount.textContent = images.length;
                 
-                item.innerHTML = `
-                    <img src="${img}" alt="Fashion creation ${index + 1}" loading="lazy">
-                    <div class="gallery-item-overlay">
-                        <div class="gallery-item-title">AI Fashion Shot #${index + 1}</div>
-                        <div class="gallery-item-meta">Created with CherryShot AI</div>
-                    </div>
-                `;
-
-                item.onclick = () => openModal(img);
-                gallery.appendChild(item);
-            });
+                images.forEach((img, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    item.style.animationDelay = `${index * 0.05}s`;
+                    
+                    item.innerHTML = `
+                        <img src="jewelry/${img}" alt="Jewelry creation ${index + 1}" loading="lazy">
+                        <div class="gallery-item-overlay">
+                            <div class="gallery-item-title">AI Jewelry Shot #${index + 1}</div>
+                            <div class="gallery-item-meta">Created with CherryShot AI</div>
+                        </div>
+                    `;
+                    
+                    item.onclick = () => openModal(`jewelry/${img}`);
+                    gallery.appendChild(item);
+                });
+            }
         }
 
-        // Modal functions
         function openModal(imgSrc) {
             const modal = document.getElementById('modal');
             const modalImg = document.getElementById('modal-img');
@@ -618,31 +460,19 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Close modal on background click
         document.getElementById('modal').onclick = function(e) {
             if (e.target === this) {
                 closeModal();
             }
         };
 
-        // Close modal on Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
             }
         });
 
-        // Filter functionality (placeholder - can be enhanced)
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                // Filter logic can be added here
-            });
-        });
-
-        // Initialize
-        loadGallery();
+        loadImages();
     </script>
 </body>
 </html>
