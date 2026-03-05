@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <title>How Eyewear Brands Launch Faster with AI | CherryShot AI</title>
+    <meta name="description" content="Discover how AI photography is transforming eyewear launches with realistic, campaign-ready imagery.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global & Site Consistency */
+        :root {
+            --primary: #dc2626;
+            --foreground: #18181b;
+            --muted-foreground: #71717a;
+            --border: #e4e4e7;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #FAFAF8; 
+            color: #1C1C1C;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 1.25rem 0;
+        }
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 700;
+            color: var(--foreground);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+        }
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-links a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--foreground); }
+        .btn-primary {
+            background: var(--foreground);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover { background: #000; transform: scale(1.02); }
+
+        /* Blog Content Styles from jewelry/file.tsx */
+        .cs-blog {
+            font-family: 'DM Sans', sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 0 80px;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+        }
+
+        .cs-hero {
+            background: #0F0F0F;
+            padding: 56px 40px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cs-hero::before {
+            content: '';
+            position: absolute;
+            top: -40px; right: -40px;
+            width: 280px; height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232,33,58,0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cs-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+        .cs-logo-row img { height: 30px; object-fit: contain; }
+        .cs-logo-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.15); }
+        .cs-logo-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+        .cs-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,33,58,0.12); border: 1px solid rgba(232,33,58,0.3); border-radius: 4px; padding: 5px 12px; margin-bottom: 20px; }
+        .cs-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: #E8213A; }
+        .cs-eyebrow-text { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #E8213A; }
+        .cs-h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 42px); font-weight: 800; line-height: 1.15; color: #fff; margin: 0 0 20px; max-width: 640px; }
+        .cs-h1 em { font-style: italic; color: #E8213A; }
+        .cs-meta-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .cs-meta-item { font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 400; }
+        .cs-meta-sep { color: rgba(255,255,255,0.15); }
+
+        .cs-body { padding: 0 40px; }
+        .cs-lead { font-size: 17px; line-height: 1.8; font-weight: 400; color: #2D2D2D; margin: 40px 0 36px; padding-left: 18px; border-left: 3px solid #E8213A; }
+        .cs-def-box { background: #fcfcf9; border: 1px solid #E8E8E4; border-radius: 10px; padding: 22px 26px; margin-bottom: 44px; position: relative; }
+        .cs-def-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #E8213A; margin-bottom: 8px; }
+        .cs-def-text { font-size: 14.5px; line-height: 1.75; color: #444; margin: 0; }
+        .cs-h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #0F0F0F; margin: 44px 0 14px; line-height: 1.3; }
+        .cs-p { font-size: 15px; line-height: 1.82; color: #3C3C3C; margin: 0 0 16px; font-weight: 300; }
+        .cs-p strong { font-weight: 600; color: #1C1C1C; }
+
+        .cs-img-full { width: 100%; display: block; object-fit: cover; margin-top: 32px; margin-bottom: 0; }
+        .cs-img-caption { font-size: 12px; color: #888; padding: 10px 40px 28px; font-style: italic; width: 100%; background: #F5F5F2; border-bottom: 1px solid #EBEBEB; margin-bottom: 32px; }
+
+        .cs-modes-section { margin: 36px 0; }
+        .cs-modes-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #888; margin-bottom: 16px; }
+        .cs-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+        .cs-mode-card { border-radius: 8px; overflow: hidden; background: #fff; border: 1px solid #E8E8E4; }
+        .cs-mode-card img { width: 100%; object-fit: cover; display: block; }
+        .cs-mode-card-footer { padding: 10px 12px 12px; background: #F5F5F2; }
+        .cs-mode-chip { display: inline-block; background: #0F0F0F; color: #fff; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; margin-bottom: 4px; }
+        .cs-mode-desc { font-size: 11.5px; color: #888; font-style: italic; line-height: 1.4; }
+
+        .cs-stat-block { background: #0F0F0F; border-radius: 12px; padding: 36px 40px; margin: 48px 0; display: flex; align-items: center; gap: 32px; }
+        .cs-stat-num { font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 800; color: #E8213A; line-height: 1; white-space: nowrap; flex-shrink: 0; }
+        .cs-stat-label { font-size: 18px; font-weight: 600; color: #fff; line-height: 1.3; margin-bottom: 6px; }
+        .cs-stat-sub { font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 300; }
+
+        .cs-table-header-label { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #0F0F0F; margin: 44px 0 14px; }
+        .cs-table-wrap { border-radius: 10px; overflow: hidden; border: 1px solid #E0E0DC; margin-bottom: 44px; }
+        .cs-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+        .cs-table thead tr { background: #0F0F0F; }
+        .cs-table thead th { padding: 13px 16px; color: #fff; font-weight: 500; letter-spacing: 0.03em; text-align: left; }
+        .cs-table thead th:not(:first-child) { text-align: center; }
+        .cs-table tbody tr:nth-child(even) { background: #F7F7F4; }
+        .cs-table tbody tr:nth-child(odd) { background: #fff; }
+        .cs-table tbody td { padding: 12px 16px; color: #555; border-bottom: 1px solid #EBEBEB; }
+        .cs-table tbody td:first-child { font-weight: 500; color: #222; }
+        .cs-table tbody td:nth-child(2) { text-align: center; color: #E8213A; font-weight: 700; }
+        .cs-table tbody td:nth-child(3), .cs-table tbody td:nth-child(4) { text-align: center; }
+
+        .cs-divider { border: none; border-top: 1px solid #EBEBEB; margin: 36px 0; }
+        .cs-faq-item { border-bottom: 1px solid #EBEBEB; padding: 20px 0; }
+        .cs-faq-q { font-size: 15px; font-weight: 600; color: #1C1C1C; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin: 0; }
+        .cs-faq-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: #F0F0EC; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #888; margin-top: 1px; }
+        .cs-faq-icon.open { background: #E8213A; color: #fff; }
+        .cs-faq-a { font-size: 14.5px; line-height: 1.78; color: #555; font-weight: 300; margin-top: 12px; display: none; }
+        .cs-faq-a.open { display: block; }
+
+        .cs-cta-block { background: #0F0F0F; border-radius: 14px; padding: 44px 40px; text-align: center; margin: 32px 0 0; position: relative; overflow: hidden; }
+        .cs-cta-block::before { content: ''; position: absolute; bottom: -60px; right: -60px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(232,33,58,0.2) 0%, transparent 70%); pointer-events: none; }
+        .cs-cta-headline { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 12px; line-height: 1.25; position: relative; }
+        .cs-cta-headline em { font-style: italic; color: #E8213A; }
+        .cs-cta-sub { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 28px; font-weight: 300; position: relative; }
+        .cs-cta-btn { display: inline-block; background: #E8213A; color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14.5px; padding: 14px 36px; border-radius: 6px; text-decoration: none; position: relative; transition: all 0.3s ease; }
+        .cs-cta-btn:hover { background: #ff2b47; transform: translateY(-2px); }
+        .cs-cta-note { font-size: 12px; color: rgba(255,255,255,0.25); margin-top: 14px; position: relative; }
+
+        /* Footer */
+        footer {
+            background: #fff;
+            color: var(--foreground);
+            padding: 6rem 2rem 4rem;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+        }
+        .footer-section h3 {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: var(--foreground);
+        }
+        .footer-section p { color: var(--muted-foreground); line-height: 1.7; max-width: 300px; }
+        .footer-section a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.75rem;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+        .footer-section a:hover { color: var(--primary); }
+        .footer-bottom {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            color: var(--muted-foreground);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            .cs-body { padding: 0 24px; }
+            .cs-hero { padding: 40px 24px; }
+            .cs-stat-block { flex-direction: column; text-align: center; gap: 16px; }
+            .footer-content { grid-template-columns: 1fr 1fr; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                🍒 CherryShot AI
+            </a>
+            <div class="nav-links">
+                <a href="/fashion/">Fashion</a>
+                <a href="/footwear/">Footwear</a>
+                <a href="/jewelry/">Jewelry</a>
+                <a href="/eyewear/" class="active">Eyewear</a>
+                <a href="https://cherryshot.ai" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="cs-blog">
+        <header class="cs-hero">
+            <div class="cs-logo-row">
+                <img src="https://cherryshot.ai/logo.webp" alt="CherryShot AI">
+                <div class="cs-logo-divider"></div>
+                <span class="cs-logo-tag">Eyewear Brands</span>
+            </div>
+            <div class="cs-eyebrow">
+                <div class="cs-eyebrow-dot"></div>
+                <span class="cs-eyebrow-text">D2C Eyewear · 2026</span>
+            </div>
+            <h1 class="cs-h1">
+                How Eyewear Brands Are Launching New SKUs <em>Faster</em> with Realistic AI Photography
+            </h1>
+            <div class="cs-meta-row">
+                <span class="cs-meta-item">820 words</span>
+                <span class="cs-meta-sep">·</span>
+                <span class="cs-meta-item">4 min read</span>
+                <span class="cs-meta-sep">·</span>
+                <span class="cs-meta-item">AI Product Photography · Eyewear</span>
+            </div>
+        </header>
+
+        <div class="cs-body">
+            <p class="cs-lead">
+                Eyewear brands are launching new SKUs faster in 2026 because AI photography removes the bottleneck. No studio booking. No model coordination. No 10-day wait. Upload a product image, pick a visual mode, and get four campaign-ready shots in under two minutes. CherryShot AI handles lens reflections, frame angles, and lighting consistency across every colorway, automatically.
+            </p>
+
+            <div class="cs-def-box">
+                <div class="cs-def-label">What is AI eyewear product photography?</div>
+                <p class="cs-def-text">
+                    AI eyewear product photography uses purpose-built models to generate realistic, campaign-quality images of glasses and sunglasses from a single uploaded product photo. Unlike general-purpose AI tools, it preserves exact lens tints, frame geometry, and hardware detail while placing the product into editorial, lifestyle, or on-model contexts.
+                </p>
+            </div>
+
+            <h2 class="cs-h2">The Real Bottleneck in Eyewear Launches</h2>
+            <p class="cs-p">
+                Eyewear is one of the hardest categories to photograph well. Lens reflections. Gold hardware glare. Frame angles that only work from exact distances. A single SKU can require three to five reshoots before the images are usable.
+            </p>
+            <p class="cs-p">
+                Multiply that across a seasonal collection of 20 to 40 colorways and you have a scheduling problem that kills launch timelines. Traditional studio shoots for a mid-size eyewear collection run between <strong>$4,000 and $10,000</strong>. Turnaround is typically 7 to 14 days. By the time the photos arrive, the pre-launch content window is already closing.
+            </p>
+        </div>
+
+        <img class="cs-img-full" src="https://auth.cherryshot.ai/storage/v1/object/public/cherryshot%20blog/Comparison_Photo_Template_V1.png" alt="Before vs After comparison" style="max-height: 500px;">
+        <div class="cs-img-caption">Before vs After — Raw product upload on the left. CherryShot AI output on the right. Same SKU, zero reshoots.</div>
+
+        <div class="cs-body">
+            <h2 class="cs-h2">What Changed in 2026</h2>
+            <p class="cs-p">
+                AI product photography has crossed a quality threshold. The images are no longer "good enough for social." They are campaign-ready, editorially styled, and consistent across the entire catalog.
+            </p>
+            <p class="cs-p">
+                The critical shift for eyewear is product fidelity. Early AI tools distorted frames, hallucinated lens tints, and dropped hardware detail. Purpose-built platforms now preserve the exact geometry of the product while placing it into editorial and lifestyle contexts. For a category where millimeter-level accuracy drives purchase confidence, that distinction matters.
+            </p>
+
+            <h2 class="cs-h2">How CherryShot AI Works for Eyewear</h2>
+            <p class="cs-p">
+                The workflow is three steps: upload your product image, select an AI model face, choose a visual mode. CherryShot AI generates four campaign-ready shots in under two minutes. The modes do the creative direction for you.
+            </p>
+
+            <div class="cs-modes-section">
+                <div class="cs-modes-label">CherryShot AI — Eyewear Modes in Action</div>
+                <div class="cs-grid-2">
+                    <div class="cs-mode-card">
+                        <img src="https://auth.cherryshot.ai/storage/v1/object/public/cherryshot%20blog/599646557_774826528993709_7595476511914760432_n.jpg" alt="Classic Mode" style="height: 380px;">
+                        <div class="cs-mode-card-footer">
+                            <div class="cs-mode-chip">Classic Mode</div>
+                            <div class="cs-mode-desc">On-model, editorial context — the go-to for product pages and paid social</div>
+                        </div>
+                    </div>
+                    <div class="cs-mode-card">
+                        <img src="https://auth.cherryshot.ai/storage/v1/object/public/cherryshot%20blog/600875088_2313995205691833_9065272254714610771_n.jpg" alt="Magazine Mode" style="height: 380px;">
+                        <div class="cs-mode-card-footer">
+                            <div class="cs-mode-chip">Magazine Mode</div>
+                            <div class="cs-mode-desc">Full lifestyle scene with location, light and atmosphere — built for campaigns</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cs-grid-2">
+                    <div class="cs-mode-card">
+                        <img src="https://auth.cherryshot.ai/storage/v1/object/public/cherryshot%20blog/552506476_766047052898712_5431931489853888282_n.jpg" alt="Reference Mode" style="height: 260px;">
+                        <div class="cs-mode-card-footer">
+                            <div class="cs-mode-chip">Reference Mode</div>
+                            <div class="cs-mode-desc">Upload a campaign image, generate new SKUs that match your existing visual identity exactly</div>
+                        </div>
+                    </div>
+                    <div class="cs-mode-card">
+                        <img src="https://auth.cherryshot.ai/storage/v1/object/public/cherryshot%20blog/616144722_1178995267549614_725342904542926672_n.jpg" alt="Product Only Mode" style="height: 260px;">
+                        <div class="cs-mode-card-footer">
+                            <div class="cs-mode-chip">Product Only</div>
+                            <div class="cs-mode-desc">Standalone still life with no model — ideal for hero shots, Amazon listings, and print</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="cs-p">
+                Switch between all modes from the same product upload. No re-upload. No reshoots. <strong>Reference Mode</strong> is especially powerful for eyewear brands that already have a campaign aesthetic — upload one reference image and every new SKU matches the look instantly.
+            </p>
+
+            <div class="cs-stat-block">
+                <div class="cs-stat-num">4 shots</div>
+                <div>
+                    <div class="cs-stat-label">generated in under 2 minutes per SKU</div>
+                    <div class="cs-stat-sub">Any colorway. Classic, Magazine, Reference, or Product Only. From $0.20 per image.</div>
+                </div>
+            </div>
+
+            <div class="cs-table-header-label">CherryShot AI vs Your Other Options</div>
+            <div class="cs-table-wrap">
+                <table class="cs-table">
+                    <thead>
+                        <tr>
+                            <th>Factor</th>
+                            <th>CherryShot AI</th>
+                            <th>Traditional Studio</th>
+                            <th>Freelance Photographer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Turnaround per SKU</td><td>Under 2 min</td><td>7 to 14 days</td><td>2 to 5 days</td></tr>
+                        <tr><td>Cost per image</td><td>$0.20 to $0.40</td><td>$50 to $200+</td><td>$30 to $150</td></tr>
+                        <tr><td>Handles lens reflections</td><td>Yes, automatic</td><td>Manual, extra cost</td><td>Hit or miss</td></tr>
+                        <tr><td>Reshoots</td><td>Instant, free</td><td>Extra charge</td><td>Extra charge</td></tr>
+                        <tr><td>Consistency across colorways</td><td>Pixel-perfect</td><td>Varies by shoot</td><td>Varies by shoot</td></tr>
+                        <tr><td>Visual modes available</td><td>8+ presets + Reference</td><td>Manual setup only</td><td>Manual setup only</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr class="cs-divider">
+            <h2 class="cs-h2" style="margin-top: 28px;">Common Questions from Eyewear Founders</h2>
+            <div style="margin-bottom: 48px;">
+                <div class="cs-faq-item">
+                    <div class="cs-faq-q" onclick="toggleFaq(0)">
+                        <span>Can AI really handle eyewear photography accurately?</span>
+                        <span class="cs-faq-icon" id="faq-icon-0">+</span>
+                    </div>
+                    <p class="cs-faq-a" id="faq-a-0">Yes, when using a purpose-built platform. CherryShot AI preserves lens tints, frame geometry, and gold hardware details exactly as uploaded. General-purpose AI tools hallucinate product details. CherryShot does not — the product you upload is the product that appears in every output.</p>
+                </div>
+                <div class="cs-faq-item">
+                    <div class="cs-faq-q" onclick="toggleFaq(1)">
+                        <span>What is Reference Mode and when should I use it?</span>
+                        <span class="cs-faq-icon" id="faq-icon-1">+</span>
+                    </div>
+                    <p class="cs-faq-a" id="faq-a-1">Reference Mode lets you upload an existing campaign image and have CherryShot AI generate new shots that match its visual language. Use it when you already have an established brand aesthetic and need new SKUs to match existing catalog imagery without reshooting.</p>
+                </div>
+                <div class="cs-faq-item">
+                    <div class="cs-faq-q" onclick="toggleFaq(2)">
+                        <span>How many images do I get per SKU, and what does it cost?</span>
+                        <span class="cs-faq-icon" id="faq-icon-2">+</span>
+                    </div>
+                    <p class="cs-faq-a" id="faq-a-2">Each generation produces four campaign-ready shots. CherryShot AI starts at $10 for 50 credits — standard images cost 1 credit ($0.20), pro images cost 2 credits ($0.40). A full 20-SKU collection with four shots each runs about 80 to 160 credits, compared to $4,000 to $10,000 for a traditional studio shoot.</p>
+                </div>
+                <div class="cs-faq-item">
+                    <div class="cs-faq-q" onclick="toggleFaq(3)">
+                        <span>What is the difference between Classic, Magazine, and Product Only modes?</span>
+                        <span class="cs-faq-icon" id="faq-icon-3">+</span>
+                    </div>
+                    <p class="cs-faq-a" id="faq-a-3">Classic places the product on an AI-generated model in a clean editorial context — ideal for product pages. Magazine mode creates a full lifestyle scene with location, light, and atmosphere for campaign and social use. Product Only generates a standalone still life composition with no model, suited for hero shots and Amazon listings.</p>
+                </div>
+                <div class="cs-faq-item">
+                    <div class="cs-faq-q" onclick="toggleFaq(4)">
+                        <span>Is the output quality good enough for a paid ad or product launch?</span>
+                        <span class="cs-faq-icon" id="faq-icon-4">+</span>
+                    </div>
+                    <p class="cs-faq-a" id="faq-a-4">In 2026, yes. The quality bar has crossed from social-ready to campaign-ready. Eyewear brands are using CherryShot AI outputs on product pages, paid social ads, and seasonal drops. The before/after in this post shows the output firsthand.</p>
+                </div>
+            </div>
+
+            <div class="cs-cta-block">
+                <div class="cs-cta-headline">
+                    Launch every SKU with <em>campaign-ready</em> imagery.
+                </div>
+                <div class="cs-cta-sub">
+                    Classic. Magazine. Reference. Product Only. All from one upload.
+                </div>
+                <a href="https://cherryshot.ai" target="_blank" rel="noopener noreferrer" class="cs-cta-btn">
+                    Get Started for $10
+                </a>
+                <div class="cs-cta-note">Starts at $10 · 50 credits · No studio required</div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CherryShot AI</h3>
+                <p>Professional AI-powered product photography studio. Create stunning images instantly.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Product</h3>
+                <a href="/#features">Features</a>
+                <a href="/#pricing">Pricing</a>
+                <a href="/fashion">Gallery</a>
+                <a href="/api">API</a>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <a href="/about">About</a>
+                <a href="/blog">Blog</a>
+                <a href="/careers">Careers</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/cookies">Cookie Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CherryShot AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(index) {
+            const answer = document.getElementById(`faq-a-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            const isOpen = answer.classList.contains('open');
+            
+            // Close all others
+            document.querySelectorAll('.cs-faq-a').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.cs-faq-icon').forEach(i => {
+                i.classList.remove('open');
+                i.innerText = '+';
+            });
+            
+            if (!isOpen) {
+                answer.classList.add('open');
+                icon.classList.add('open');
+                icon.innerText = '−';
+            }
+        }
+    </script>
+</body>
+</html>
